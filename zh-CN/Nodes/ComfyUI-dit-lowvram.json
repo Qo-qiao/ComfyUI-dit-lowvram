@@ -1,1 +1,60 @@
-434
+{
+  "DiTLowVRAMOptimizer": {
+    "title": "DiT 低显存优化器",
+    "inputs": {
+      "model": "模型"
+    },
+    "widgets": {
+      "model": "模型",
+      "preset": "预设模式",
+      "n_keep": "保留层数",
+      "token_reduction": "Token降采样",
+      "tr_start": "降采样起始层",
+      "tr_end": "降采样结束层",
+      "tr_pool": "池化倍率",
+      "int8_dit": "INT8量化DiT",
+      "int8_te": "INT8量化文本编码器",
+      "te_offload": "文本编码器卸载",
+      "step_cache": "跳步缓存",
+      "skip_interval": "跳步间隔",
+      "warmup_steps": "预热步数",
+      "noise_scale": "噪声系数"
+    },
+    "outputs": {
+      "model": "模型",
+      "info": "信息"
+    },
+    "tooltips": {
+      "model": "模型输入\n支持: MiniMax H3 / Music3 / LTX / Wan",
+      "preset": "按显存预算自动配置:\n• off: 不优化\n• 6gb~16gb: 自动档位\n• manual: 手动配置",
+      "n_keep": "保留DiT层数，越少越省显存\n自动按模型总层数调整比例",
+      "token_reduction": "中间层空间token池化\n减少约40%计算量",
+      "tr_start": "Token降采样起始层",
+      "tr_end": "Token降采样结束层",
+      "tr_pool": "池化倍率: 2=减4倍token, 4=减16倍",
+      "int8_dit": "INT8量化DiT权重，省约50%显存",
+      "int8_te": "INT8量化文本编码器，省约50%显存",
+      "te_offload": "文本编码器逐层卸载到CPU，省约98%显存",
+      "step_cache": "跳步缓存：跳过相邻去噪步的transformer计算\n复用缓存结果，加速约1.5-2x\n轻微质量损失",
+      "skip_interval": "每隔N步跳过一次计算\n越小加速越大但质量下降越多",
+      "warmup_steps": "前N步不跳过，让模型稳定\n避免开头质量差",
+      "noise_scale": "跳步时添加的噪声大小\n防止重复伪影",
+      "model": "优化后的模型",
+      "info": "模型类型和已启用的优化选项"
+    }
+  },
+  "VRAMMonitor": {
+    "title": "显存监控",
+    "inputs": {},
+    "widgets": {
+      "model": "模型"
+    },
+    "outputs": {
+      "vram_info": "显存信息"
+    },
+    "tooltips": {
+      "model": "可选：传入模型查看优化状态",
+      "vram_info": "GPU显存使用量和优化状态"
+    }
+  }
+}
